@@ -1,6 +1,6 @@
 {
   "name": "electrum-ecies",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Electrum ECIES js implement, encrypt/decrypt message in BIE1 format, like Electrum/Electron Tools -> Encrypt/decrypt message do.",
   "main": "index.js",
   "scripts": {

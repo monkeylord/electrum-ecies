@@ -10,10 +10,11 @@ function Electrum_ecdh_key(publicKey,privateKey){
     return Hash.sha512(buf);
 }
 
-function encrypt(plainText,publicKey){
+function encrypt(plainText,publicKey,privateKey=null){
     //Prepare keys
-    var recv_pubkey = PublicKey.fromString(publicKey);
-    var ephemeral_key = new PrivateKey();
+    var recv_pubkey = new PublicKey(publicKey);
+    //Override ephemeral_key if privateKey is given. This overriding is for traditional ECIES.
+    var ephemeral_key = new PrivateKey(privateKey);
     var ecdh_key = Electrum_ecdh_key(recv_pubkey,ephemeral_key);
     var iv=ecdh_key.subarray(0,16);
     var key_e=ecdh_key.subarray(16,32);
@@ -33,11 +34,12 @@ function encrypt(plainText,publicKey){
     return Buffer.concat([encrypted,hmac]).toString('base64');
 }
 
-function decrypt(encryptedMsg,privateKey){
+function decrypt(encryptedMsg,privateKey,publicKey=null){
     //Read from Encrypted Massage
     var encrypted=Buffer.from(encryptedMsg,'base64');
     var magic=encrypted.subarray(0,4);
-    var ephemeral_pubkey=PublicKey.fromBuffer(encrypted.subarray(4,37));
+    //Override publicKey in message when publicKey is given. The overriding is for sender to retrieve message he sent in traditional ECIES.
+    var ephemeral_pubkey=(publicKey==null)?PublicKey.fromBuffer(encrypted.subarray(4,37)):new PublicKey(publicKey);
     var ciphertext = encrypted.subarray(37,encrypted.length-32);
     var mac= encrypted.subarray(encrypted.length-32);
     
