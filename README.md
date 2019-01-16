@@ -16,6 +16,12 @@ Or decrypt message Electrum/Electron Cash Wallet encrypted.
 npm install electrum-ecies
 ~~~
 
+#### In browser
+
+~~~javascript
+<script src='https://unpkg.com/electrum-ecies'></script>
+~~~
+
 ### Examples
 
 #### Encrypt Message with Receiver's PublicKey
