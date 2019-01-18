@@ -1,11 +1,11 @@
 {
   "name": "electrum-ecies",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Electrum ECIES js implement, encrypt/decrypt message in BIE1 format, like Electrum/Electron Tools -> Encrypt/decrypt message do.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack index.js --output-library ECIES --output ecies.js"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",

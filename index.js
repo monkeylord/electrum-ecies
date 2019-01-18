@@ -1,9 +1,10 @@
 'use strict';
 
-var PrivateKey = require('bsv').PrivateKey;
-var PublicKey = require('bsv').PublicKey;
-var Hash = require('bsv').crypto.Hash;
-var crypto = require('crypto')
+var bsv = require('bsv');
+var PrivateKey = bsv.PrivateKey;
+var PublicKey = bsv.PublicKey;
+var Hash = bsv.crypto.Hash;
+var crypto = require('crypto');
 
 function Electrum_ecdh_key(publicKey,privateKey){
     //Get ECDH Key

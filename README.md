@@ -19,6 +19,7 @@ npm install electrum-ecies
 #### In browser
 
 ~~~javascript
+<script src='https://unpkg.com/bsv'></script>
 <script src='https://unpkg.com/electrum-ecies'></script>
 ~~~
 
