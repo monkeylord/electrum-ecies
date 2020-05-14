@@ -42,8 +42,8 @@ function decrypt(encryptedMsg,privateKey,publicKey = null){
     var magic = encrypted.subarray(0,4);
     //Override publicKey in message when publicKey is given. The overriding is for sender to retrieve message he sent in traditional ECIES.
     var ephemeral_pubkey = (publicKey == null)?PublicKey.fromBuffer(encrypted.subarray(4,37)):new PublicKey(publicKey);
-    var ciphertext = encrypted.subarray(37,encrypted.length - 32);
-    var mac = encrypted.subarray(encrypted.length - 32);
+    var ciphertext = Buffer.from(encrypted.subarray(37,encrypted.length - 32));
+    var mac = Buffer.from(encrypted.subarray(encrypted.length - 32));
     
     //Prepare Keys
     var recv_prvKey = new PrivateKey(privateKey);
