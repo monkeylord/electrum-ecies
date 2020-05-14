@@ -68,18 +68,32 @@ function decrypt(encryptedMsg,privateKey,publicKey = null){
 function getPublicKey(encryptedMsg){
 //Read from Encrypted Massage, Encrypted message should be in Base64, so toString is safe.
     var encrypted = Buffer.from(encryptedMsg.toString(),'base64');
-    //Override publicKey in message when publicKey is given. The overriding is for sender to retrieve message he sent in traditional ECIES.
-    return PublicKey.fromBuffer(encrypted.subarray(4,37));
+    try{
+        return PublicKey.fromBuffer(encrypted.subarray(4,37));
+    }catch(err){
+        console.log(err);
+        return null;
+    }
 }
 function getMagic(encryptedMsg){
 //Read from Encrypted Massage, Encrypted message should be in Base64, so toString is safe.
-    var encrypted = Buffer.from(encryptedMsg.toString(),'base64');
-    return encrypted.subarray(0,4);
+    try{
+        var encrypted = Buffer.from(encryptedMsg.toString(),'base64');
+        return encrypted.subarray(0,4);
+    }catch(err){
+        console.log(err);
+        return null;
+    }
 }
 function getHMAC(encryptedMsg){
 //Read from Encrypted Massage, Encrypted message should be in Base64, so toString is safe.
-    var encrypted = Buffer.from(encryptedMsg.toString(),'base64');
-    return encrypted.subarray(encrypted.length - 32);    
+    try{
+        var encrypted = Buffer.from(encryptedMsg.toString(),'base64');
+        return encrypted.subarray(encrypted.length - 32);
+    }catch(err){
+        console.log(err);
+        return null;
+    }    
 }
 
 module.exports = {
