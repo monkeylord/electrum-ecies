@@ -1,5 +1,9 @@
 # Electrum ECIES
 
+> This repo is depreciated, as the project is merged into [bsv library](https://github.com/moneybutton/bsv).
+>
+> You can view new [usage](https://github.com/moneybutton/bsv/blob/master/docs/ecies.md) with bsv library.
+
 Electrum ECIES js implement, encrypt/decrypt message in BIE1 format, like Electrum/Electron Tools -> Encrypt/decrypt message.
 
 You can encrypt message just with receiver's publickey, and receiver can decrypt message with his privatekey.
